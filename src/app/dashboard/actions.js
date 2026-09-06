@@ -5,6 +5,16 @@ import { MockInterview } from "../../../utils/schema";
 import { v4 as uuidv4 } from "uuid";
 import { UserAnswer } from "../../../utils/schema"
 import { eq, desc } from "drizzle-orm";
+import { generateInterview, generateFeedback } from "../../../utils/OpenAiModel";
+
+export async function generateInterviewFromPrompt(jobRole, jobDescription, yearsOfExperience) {
+    return await generateInterview(jobRole, jobDescription, yearsOfExperience);
+}
+
+export async function generateFeedbackForAnswer(question, userAnswer) {
+    return await generateFeedback(question, userAnswer);
+}
+
 export async function saveMockInterview({
     jsonMockResp,
     jobPosition,

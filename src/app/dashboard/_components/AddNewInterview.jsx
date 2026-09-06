@@ -14,9 +14,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Briefcase, Code2, CalendarDays, Loader2 } from "lucide-react";
-import { generateInterview } from "../../../../utils/OpenAiModel";
-import { saveMockInterview } from '../actions';
+import { Briefcase, Code2, CalendarDays, Loader2, Plus } from "lucide-react";
+import { generateInterviewFromPrompt, saveMockInterview } from '../actions';
 
 const AddNewInterview = () => {
     const router = useRouter()
@@ -40,7 +39,7 @@ const AddNewInterview = () => {
         setLoading(true);
 
         try {
-            const result = await generateInterview(
+            const result = await generateInterviewFromPrompt(
                 jobPosition,
                 jobDescription,
                 jobExperience
@@ -82,17 +81,21 @@ const AddNewInterview = () => {
     };
     return (
         <div>
-            <div className="p-10 border rounded-lg bg-gray-200 hover:scale-105 hover:shadow-md cursor-pointer transition-all" onClick={() => setOpenDailog(true)}>
-                <h2 className='font-bold text-lg text-center'>+ Add New</h2>
+            <div
+                className="flex flex-col items-center justify-center gap-2 p-10 border border-dashed border-slate-800 rounded-lg bg-slate-900 hover:border-sky-400 hover:bg-slate-900/80 cursor-pointer transition-all"
+                onClick={() => setOpenDailog(true)}
+            >
+                <Plus className="text-sky-400" size={22} />
+                <h2 className='font-semibold text-slate-200'>Add New</h2>
             </div>
             <Dialog open={openDailog} onOpenChange={setOpenDailog}>
-                <DialogContent className="sm:max-w-2xl">
+                <DialogContent className="sm:max-w-2xl bg-slate-900 border border-slate-800 text-slate-100">
                     <DialogHeader className="space-y-2">
-                        <DialogTitle className="text-2xl font-bold">
+                        <DialogTitle className="text-2xl font-bold text-slate-50">
                             Tell us about your interview
                         </DialogTitle>
 
-                        <DialogDescription>
+                        <DialogDescription className="text-slate-400">
                             We'll generate tailored interview questions based on your role,
                             tech stack, and experience level.
                         </DialogDescription>
@@ -102,8 +105,8 @@ const AddNewInterview = () => {
 
                             {/* Job Role */}
                             <div className="space-y-2">
-                                <label className="text-sm font-medium flex items-center gap-2">
-                                    <Briefcase size={16} />
+                                <label className="text-sm font-medium flex items-center gap-2 text-slate-300">
+                                    <Briefcase size={16} className="text-sky-400" />
                                     Job Role / Position
                                 </label>
 
@@ -111,13 +114,14 @@ const AddNewInterview = () => {
                                     value={jobPosition}
                                     onChange={(e) => setJobPosition(e.target.value)}
                                     placeholder="Frontend Developer, Full Stack Engineer, Backend Developer..."
+                                    className="bg-slate-950 border-slate-700 text-slate-100 placeholder:text-slate-600 focus-visible:ring-sky-400"
                                 />
                             </div>
 
                             {/* Tech Stack */}
                             <div className="space-y-2">
-                                <label className="text-sm font-medium flex items-center gap-2">
-                                    <Code2 size={16} />
+                                <label className="text-sm font-medium flex items-center gap-2 text-slate-300">
+                                    <Code2 size={16} className="text-sky-400" />
                                     Job Description / Tech Stack
                                 </label>
 
@@ -126,13 +130,14 @@ const AddNewInterview = () => {
                                     onChange={(e) => setJobDescription(e.target.value)}
                                     rows={5}
                                     placeholder="React, Next.js, Node.js, MongoDB, Express, Tailwind CSS, REST APIs..."
+                                    className="bg-slate-950 border-slate-700 text-slate-100 placeholder:text-slate-600 focus-visible:ring-sky-400"
                                 />
                             </div>
 
                             {/* Experience */}
                             <div className="space-y-2">
-                                <label className="text-sm font-medium flex items-center gap-2">
-                                    <CalendarDays size={16} />
+                                <label className="text-sm font-medium flex items-center gap-2 text-slate-300">
+                                    <CalendarDays size={16} className="text-sky-400" />
                                     Years of Experience
                                 </label>
 
@@ -143,6 +148,7 @@ const AddNewInterview = () => {
                                     min="0"
                                     max="30"
                                     placeholder="e.g. 2"
+                                    className="bg-slate-950 border-slate-700 text-slate-100 placeholder:text-slate-600 focus-visible:ring-sky-400"
                                 />
                             </div>
 
@@ -153,11 +159,16 @@ const AddNewInterview = () => {
                                     variant="outline"
                                     onClick={() => setOpenDailog(false)}
                                     disabled={loading}
+                                    className="border-slate-700 bg-transparent text-slate-300 hover:bg-slate-800 hover:text-slate-100"
                                 >
                                     Cancel
                                 </Button>
 
-                                <Button className="px-6" type="submit" disabled={loading}>
+                                <Button
+                                    className="px-6 bg-sky-400 text-slate-950 hover:bg-sky-300"
+                                    type="submit"
+                                    disabled={loading}
+                                >
                                     {loading ? (
                                         <>
                                             <Loader2 className="animate-spin mr-2" size={16} />

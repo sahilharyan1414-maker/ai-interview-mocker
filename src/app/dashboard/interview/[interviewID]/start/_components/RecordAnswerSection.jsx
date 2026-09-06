@@ -4,9 +4,8 @@ import { Button } from '@/components/ui/button'
 import React, { useEffect, useEffectEvent, useState } from 'react'
 import Webcam from 'react-webcam'
 import { Mic } from 'lucide-react';
-import { generateFeedback } from "../../../../../../../utils/OpenAiModel";
 import { toast } from "sonner"
-import { saveUserAns } from "../../../../actions";
+import { generateFeedbackForAnswer, saveUserAns } from "../../../../actions";
 import { useUser } from "@clerk/nextjs";
 const RecordAnswerSection = ({ mockInterviewQuestion, activeQuestionIndex, interviewData }) => {
     const { user } = useUser();
@@ -47,7 +46,7 @@ const RecordAnswerSection = ({ mockInterviewQuestion, activeQuestionIndex, inter
         }
 
         try {
-            const feedback = await generateFeedback(
+            const feedback = await generateFeedbackForAnswer(
                 mockInterviewQuestion[activeQuestionIndex]?.question,
                 userAnswer
             );
