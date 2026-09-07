@@ -1,3 +1,5 @@
+
+
 "use client";
 import React, { useEffect, useState } from "react";
 import Header from "../../_components/Header";
@@ -35,42 +37,42 @@ const Interview = () => {
   }, [params.interviewID]);
 
   return (
-    <div className="my-10">
-      <h2 className="font-bold text-2xl mb-6">Let&apos;s Get Started</h2>
+    <div className="my-10 text-slate-100">
+      <h2 className="font-bold text-2xl mb-6 text-slate-50">Let&apos;s Get Started</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* LEFT COLUMN */}
         <div className="flex flex-col gap-6">
           {/* Job Details */}
-          <div className="border rounded-xl p-6 shadow-sm">
-            <h2 className="text-lg mb-4">
-              <strong>Job Role / Position:</strong>{" "}
-              <span className="font-normal">{interviewData?.jobPosition}</span>
+          <div className="border border-slate-800 bg-slate-900 rounded-xl p-6 shadow-lg">
+            <h2 className="text-lg mb-4 text-slate-200">
+              <strong className="text-slate-100">Job Role / Position:</strong>{" "}
+              <span className="font-normal text-slate-400">{interviewData?.jobPosition}</span>
             </h2>
 
-            <h2 className="text-lg mb-4">
-              <strong>Job Description:</strong>{" "}
-              <span className="font-normal">
+            <h2 className="text-lg mb-4 text-slate-200">
+              <strong className="text-slate-100">Job Description:</strong>{" "}
+              <span className="font-normal text-slate-400">
                 {interviewData?.jobDescription}
               </span>
             </h2>
 
-            <h2 className="text-lg">
-              <strong>Experience:</strong>{" "}
-              <span className="font-normal">
+            <h2 className="text-lg text-slate-200">
+              <strong className="text-slate-100">Experience:</strong>{" "}
+              <span className="font-normal text-slate-400">
                 {interviewData?.jobExperience}
               </span>
             </h2>
           </div>
 
           {/* Information Box */}
-          <div className="border rounded-xl p-6 bg-yellow-50 border-yellow-300">
+          <div className="border rounded-xl p-6 bg-amber-950/30 border-amber-900/50">
             <div className="flex items-center gap-2 mb-3">
-              <Lightbulb className="text-yellow-500 h-5 w-5" />
-              <h2 className="font-bold">Information</h2>
+              <Lightbulb className="text-amber-400 h-5 w-5" />
+              <h2 className="font-bold text-amber-200">Information</h2>
             </div>
 
-            <p className="text-sm text-gray-700 leading-6">
+            <p className="text-sm text-amber-100/80 leading-6">
               Enable Video Webcam and Microphone to start your AI generated mock
               interview. The interview contains 5 questions and you will receive
               feedback based on your answers.
@@ -86,7 +88,7 @@ const Interview = () => {
         {/* RIGHT COLUMN */}
         <div className="flex flex-col gap-6">
           {/* Webcam Card */}
-          <div className="border rounded-xl p-6 flex flex-col items-center">
+          <div className="border border-slate-800 bg-slate-900 rounded-xl p-6 flex flex-col items-center">
             {webCamEnable ? (
               <Webcam
                 mirrored
@@ -95,13 +97,13 @@ const Interview = () => {
                 className="rounded-lg w-full h-72 object-cover"
               />
             ) : (
-              <div className="w-full h-72 flex items-center justify-center bg-gray-100 rounded-lg">
-                <WebcamIcon className="h-24 w-24 text-gray-400" />
+              <div className="w-full h-72 flex items-center justify-center bg-slate-800 rounded-lg">
+                <WebcamIcon className="h-24 w-24 text-slate-500" />
               </div>
             )}
 
             <Button
-              className="mt-4 w-full"
+              className="mt-4 w-full border-slate-700 bg-transparent text-slate-200 hover:bg-slate-800 hover:text-slate-100"
               variant="outline"
               onClick={() => setWebCamEnable(!webCamEnable)}
             >
@@ -110,11 +112,13 @@ const Interview = () => {
           </div>
 
           {/* Start Interview */}
-          <div className="border rounded-xl p-6 flex justify-end items-center">
+          <div className="border border-slate-800 bg-slate-900 rounded-xl p-6 flex justify-end items-center">
             <Link
               href={`/dashboard/interview/` + params.interviewID + `/start`}
             >
-              <Button size="lg">Start Interview</Button>
+              <Button size="lg" className="bg-sky-400 text-slate-950 hover:bg-sky-300">
+                Start Interview
+              </Button>
             </Link>
           </div>
         </div>
