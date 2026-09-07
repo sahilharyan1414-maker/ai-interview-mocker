@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Mic, Video, Target, ChevronDown, Menu, X } from "lucide-react";
 
 const WAVEFORM = [
@@ -171,18 +172,18 @@ export default function LandingPage() {
           </nav>
 
           <div className="hidden md:flex items-center gap-5">
-            <a
+            <Link
               href="/sign-in"
               className="text-sm text-slate-400 hover:text-slate-100 transition-colors"
             >
               Sign in
-            </a>
-            <a
+            </Link>
+            <Link
               href="/sign-up"
               className="rounded-md bg-sky-400 px-4 py-2 text-sm font-medium text-slate-950 hover:bg-sky-300 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400"
             >
               Get started
-            </a>
+            </Link>
           </div>
 
           <button
@@ -401,8 +402,8 @@ export default function LandingPage() {
             Cue cards, not trivia.
           </h2>
           <p className="mt-4 max-w-md text-slate-400">
-            Every question is generated for the role and stack you set — here's
-            what that looks like in practice.
+            Every question is generated for the role and stack you set —
+            here&apos;s what that looks like in practice.
           </p>
 
           <div className="mt-14 grid gap-8 md:grid-cols-3">
